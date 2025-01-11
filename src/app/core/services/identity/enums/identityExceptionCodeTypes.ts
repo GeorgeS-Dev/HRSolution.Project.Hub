@@ -16,6 +16,7 @@ enum IdentityExceptionCodeTypes
     InvalidPassword = 1903
 }
 
+// NEED TO USE TRANSLATE INSTEAD OF THIS
 export const IdentityExceptionMessages: { [key: number]: string } = {
     1400: "The requested resource was not found.",
     1500: "An unhandled error occurred.",
