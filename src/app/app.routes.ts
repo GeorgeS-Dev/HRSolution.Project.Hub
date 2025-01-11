@@ -21,6 +21,7 @@ export const routes: Routes = [
         children: [
             {path: '', component: SignInComponent, },
             {path: 'login', component: SignInComponent},
+            {path: 'sign-up', component: SignInComponent},
             {path: 'confirm-email', component: ConfirmEmailComponent}
         ]
     },

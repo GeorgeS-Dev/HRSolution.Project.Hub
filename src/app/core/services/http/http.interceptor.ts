@@ -20,24 +20,26 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private httpService: HttpService, private router: Router) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const now = new Date();
-    const refreshTokenExpiry = new Date(localStorage.getItem(this.REFRESH_TOKEN_EXPIRES_KEY) || '');
-    const accessTokenExpiry = new Date(localStorage.getItem(this.ACCESS_TOKEN_EXPIRES_KEY) || '');
+    console.log("test");
+    // Needs fixing
+    // const now = new Date();
+    // const refreshTokenExpiry = new Date(localStorage.getItem(this.REFRESH_TOKEN_EXPIRES_KEY) || '');
+    // const accessTokenExpiry = new Date(localStorage.getItem(this.ACCESS_TOKEN_EXPIRES_KEY) || '');
 
-    if (now >= refreshTokenExpiry) {
-      this.handleAuthError();
-      return throwError(() => new Error('Token has expired. Logging out.'));
-    }
+    // if (now >= refreshTokenExpiry) {
+    //   this.handleAuthError();
+    //   return throwError(() => new Error('Token has expired. Logging out.'));
+    // }
 
-    if (now >= accessTokenExpiry) {
-      const refreshToken = this.getRefreshToken();
-      if (refreshToken) {
-        return this.refreshAccessToken(refreshToken, request, next);
-      } else {
-        this.handleAuthError();
-        return throwError(() => new Error('Token has expired and no refresh token available. Logging out.'));
-      }
-    }
+    // if (now >= accessTokenExpiry) {
+    //   const refreshToken = this.getRefreshToken();
+    //   if (refreshToken) {
+    //     return this.refreshAccessToken(refreshToken, request, next);
+    //   } else {
+    //     this.handleAuthError();
+    //     return throwError(() => new Error('Token has expired and no refresh token available. Logging out.'));
+    //   }
+    // }
 
     let authReq = this.addTokenHeader(request);
 
