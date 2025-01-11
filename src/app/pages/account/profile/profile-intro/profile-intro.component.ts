@@ -21,7 +21,7 @@ import { QRCodeModule  } from 'angularx-qrcode';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, NgModel, NgModelGroup } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { SignInResponse } from '../../../../core/services/identity/models/sign-in-response.model';
+import { SignInResponse } from '../../../../core/services/identity/models/sign-in.response.model';
 import { AuthService } from '../../../../core/services/identity/services/auth.service';
 
 @Component({

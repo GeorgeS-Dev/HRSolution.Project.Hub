@@ -5,7 +5,7 @@ import {
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, switchMap, filter, take } from 'rxjs/operators';
 import { HttpService } from './http.service';
-import { SignInResponse } from '../identity/models/sign-in-response.model';
+import { SignInResponse } from '../identity/models/sign-in.response.model';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -91,7 +91,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   private handleAuthError(): void {
     this.removeToken();
-    this.router.navigate(['/auth/login']);
+    this.router.navigate(['/auth/sign-in']);
   }
 
   private getToken(): string | null {

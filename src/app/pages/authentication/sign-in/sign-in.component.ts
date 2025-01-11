@@ -9,7 +9,7 @@ import {
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FeathericonsModule } from '../../../icons/feathericons/feathericons.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgIf } from '@angular/common';
@@ -18,7 +18,7 @@ import { TwoFactors } from '../../../core/services/identity/models/two-factors.m
 import { IdentityService } from '../../../core/services/identity/services/identity.service';
 import { AuthService } from '../../../core/services/identity/services/auth.service';
 import { TokenService } from '../../../core/services/identity/services/token.service';
-import { SignInResponse } from '../../../core/services/identity/models/sign-in-response.model';
+import { SignInResponse } from '../../../core/services/identity/models/sign-in.response.model';
 import { TranslateModule } from '@ngx-translate/core';
 import { TranslateService } from '@ngx-translate/core';
 import { ErrorHandlerService } from '../../../core/services/http/error-handler.service';
@@ -40,7 +40,8 @@ import { LoadingService } from '../../../core/services/loading.service';
         ReactiveFormsModule,
         NgIf,
         TranslateModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        RouterLink
     ],
     templateUrl: './sign-in.component.html',
     styleUrls: ['./sign-in.component.scss']

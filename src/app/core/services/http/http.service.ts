@@ -4,7 +4,7 @@ import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 import { parseAPIResponse, parseAPIResponseError } from '../../helpers/api-response-parser';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SignInResponse } from '../identity/models/sign-in-response.model';
+import { SignInResponse } from '../identity/models/sign-in.response.model';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 

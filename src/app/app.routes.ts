@@ -7,6 +7,7 @@ import { SignInComponent } from './pages/authentication/sign-in/sign-in.componen
 import { ConfirmEmailComponent } from './pages/authentication/confirm-email/confirm-email.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ProfileComponent } from './pages/account/profile/profile.component';
+import { SignUpComponent } from './pages/authentication/sign-up/sign-up.component';
 
 export const routes: Routes = [
     { path: '', canActivate: [AuthGuard], children: [
@@ -20,8 +21,8 @@ export const routes: Routes = [
         component: AuthenticationComponent,
         children: [
             {path: '', component: SignInComponent, },
-            {path: 'login', component: SignInComponent},
-            {path: 'sign-up', component: SignInComponent},
+            {path: 'sign-in', component: SignInComponent},
+            {path: 'sign-up', component: SignUpComponent},
             {path: 'confirm-email', component: ConfirmEmailComponent}
         ]
     },

@@ -8,6 +8,20 @@
                     <h3>
                         {{ 'SIGN_IN' | translate }}
                     </h3>
+                    <p class="text-black fs-15">
+                        {{ 'DONT_HAVE_ACCOUNT' | translate }} <a routerLink="/auth/sign-up" class="text-primary fw-medium">{{ 'SIGN_UP_HERE' | translate }}</a>
+                    </p>
+                </div>
+                <div class="signin-with-socials">
+                    <button type="button" mat-button>
+                        <img src="images/icons/google2.svg" alt="google">
+                        {{ 'SIGN_IN_WITH_GOOGLE' | translate }}
+                    </button>
+                    <div class="or text-center position-relative z-1 text-body">
+                        <span class="d-inline-block bg-white">
+                            {{ 'OR_TEXT' | translate }}
+                        </span>
+                    </div>
                 </div>
                 <div *ngIf="errorMessage" class="alert alert-danger">
                     {{ errorMessage }}
@@ -62,7 +76,16 @@
                             {{ authForm.get('password')!.getError('serverError') }}
                         </div>
                     </div>
-                    <!-- Submit Button -->
+                    
+                    <div class="info d-flex justify-content-between align-items-center">
+                        <mat-checkbox color="primary">
+                            {{ 'REMEMBER_ME' | translate }}
+                        </mat-checkbox>
+                        <a routerLink="/auth/forgot-password" class="d-inline-block text-primary">
+                            {{ 'FORGOT_YOUR_PASSWORD' | translate }}
+                        </a>
+                    </div>
+                    
                     <button mat-button type="submit" [disabled]="authForm.invalid">
                         {{ 'SIGN_IN_BUTTON' | translate }}
                     </button>

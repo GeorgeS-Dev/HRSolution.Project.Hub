@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SignInResponse } from '../models/sign-in-response.model';
+import { SignInResponse } from '../models/sign-in.response.model';
 import { AuthService } from './auth.service';
 import { environment } from '../../../../../environments/environment';
 import { HttpService } from '../../http/http.service';
+import { SignUpRequest } from '../models/sign-up.request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,12 +19,19 @@ export class IdentityService {
   ) {
   }
 
-  signIn(credentials: any): Observable<SignInResponse> {
+  signIn(request: any): Observable<SignInResponse> {
     const headers = new HttpHeaders({
       Accept: 'application/json',
       'Content-Type': 'application/json',
     });
-    return this.httpService.httpPost<SignInResponse>(`${this.apiUrl}Account/SignIn`, credentials, headers);
+    return this.httpService.httpPost<SignInResponse>(`${this.apiUrl}Account/SignIn`, request, headers);
+  }
+
+  signUp(request: SignUpRequest): Observable<any> { 
+    const headers = new HttpHeaders()
+      .set('Accept', 'text/plain')
+      .set('Content-Type', 'application/json');
+    return this.httpService.httpPost<any>(`${this.apiUrl}Profile/SignUp`, request, headers);
   }
 
   confirmTwoFactorSignIn(email: string, password: string, code: string, type: number = 0): Observable<any> {
