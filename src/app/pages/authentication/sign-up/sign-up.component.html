@@ -6,63 +6,88 @@
             >
                 <div class="title text-center">
                     <h3>
-                        Register Your Account
+                        {{ 'REGISTER_YOUR_ACCOUNT' | translate }}
                     </h3>
                     <p class="text-black fs-15">
-                        Already have an account? <a routerLink="/auth/sign-in" class="text-primary fw-medium">Sign in here</a>
+                        {{ 'ALREADY_REGISTERED' | translate }} <a routerLink="/auth/sign-in" class="text-primary fw-medium">{{ 'SIGN_IN_HERE' | translate }}</a>
                     </p>
                 </div>
                 <div class="signup-with-socials">
                     <button type="button" mat-button>
                         <img src="images/icons/google2.svg" alt="google">
-                        Sign Up With Google
+                        {{ 'SIGN_UP_WITH_GOOGLE' | translate }}
                     </button>
                     <div class="or text-center position-relative z-1 text-body">
                         <span class="d-inline-block bg-white">
-                            OR
+                            {{ 'OR_TEXT' | translate }}
                         </span>
                     </div>
                 </div>
-                <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
                     <div class="form-group">
                         <label class="label d-block fw-medium">
-                            Your Name
-                        </label>
-                        <mat-form-field>
-                            <i-feather name="user"></i-feather>
-                            <mat-label>Enter your name</mat-label>
-                            <input matInput type="text" id="name" formControlName="name">
-                        </mat-form-field>
-                        <div class="error text-danger" *ngIf="authForm.get('name')!.hasError('required') && authForm.get('name')!.touched">
-                            Name is required.
-                        </div>
-                        <div class="error text-danger" *ngIf="authForm.get('name')!.hasError('name') && authForm.get('name')!.touched">
-                            Please enter a valid name.
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="label d-block fw-medium">
-                            Email Address
+                            {{ 'EMAIL_ADDRESS' | translate }}
                         </label>
                         <mat-form-field>
                             <i-feather name="mail"></i-feather>
-                            <mat-label>Enter email address</mat-label>
+                            <mat-label>{{ 'ENTER_EMAIL' | translate }}</mat-label>
                             <input matInput type="email" id="email" formControlName="email">
                         </mat-form-field>
-                        <div class="error text-danger" *ngIf="authForm.get('email')!.hasError('required') && authForm.get('email')!.touched">
-                            Email is required.
+                        <div class="error text-danger" *ngIf="signUpForm.get('email')!.hasError('required') && signUpForm.get('email')!.touched">
+                            {{ 'EMAIL_REQUIRED' | translate }}
                         </div>
-                        <div class="error text-danger" *ngIf="authForm.get('email')!.hasError('email') && authForm.get('email')!.touched">
-                            Please enter a valid email address.
+                        <div class="error text-danger" *ngIf="signUpForm.get('email')!.hasError('email') && signUpForm.get('email')!.touched">
+                            {{ 'INVALID_EMAIL' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="signUpForm.get('email')!.hasError('serverError')">
+                            {{ signUpForm.get('email')!.getError('serverError') }}
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="label d-block fw-medium">
-                            Your Password
+                            {{ 'FIRSTNAME' | translate }}
+                        </label>
+                        <mat-form-field>
+                            <i-feather name="user"></i-feather>
+                            <mat-label>{{ 'ENTER_FIRSTNAME' | translate }}</mat-label>
+                            <input matInput type="firstName" id="firstName" formControlName="firstName">
+                        </mat-form-field>
+                        <div class="error text-danger" *ngIf="signUpForm.get('firstName')!.hasError('required') && signUpForm.get('firstName')!.touched">
+                            {{ 'FIRSTNAME_REQUIRED' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="signUpForm.get('firstName')!.hasError('minLength') && signUpForm.get('firstName')!.touched">
+                            {{ 'INVALID_FIRSTNAME' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="signUpForm.get('firstName')!.hasError('serverError')">
+                            {{ signUpForm.get('firstName')!.getError('serverError') }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label d-block fw-medium">
+                            {{ 'LASTNAME' | translate }}
+                        </label>
+                        <mat-form-field>
+                            <i-feather name="user"></i-feather>
+                            <mat-label>{{ 'ENTER_LASTNAME' | translate }}</mat-label>
+                            <input matInput type="lastName" id="lastName" formControlName="lastName">
+                        </mat-form-field>
+                        <div class="error text-danger" *ngIf="signUpForm.get('lastName')!.hasError('required') && signUpForm.get('lastName')!.touched">
+                            {{ 'LASTNAME_REQUIRED' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="signUpForm.get('lastName')!.hasError('minLength') && signUpForm.get('lastName')!.touched">
+                            {{ 'INVALID_LASTNAME' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="signUpForm.get('lastName')!.hasError('serverError')">
+                            {{ signUpForm.get('lastName')!.getError('serverError') }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label d-block fw-medium">
+                            {{ 'PASSWORD' | translate }}
                         </label>
                         <mat-form-field>
                             <i-feather name="lock"></i-feather>
-                            <mat-label>Enter your password</mat-label>
+                            <mat-label>{{ 'ENTER_PASSWORD' | translate }}</mat-label>
                             <input matInput [type]="hide ? 'password' : 'text'" id="password" formControlName="password">
                             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                                 <span class="material-symbols-outlined">
@@ -70,20 +95,53 @@
                                 </span>
                             </button>
                         </mat-form-field>
-                        <div class="error text-danger" *ngIf="authForm.get('password')!.hasError('required') && authForm.get('password')!.touched">
-                            Password is required.
+                        <div class="error text-danger" *ngIf="signUpForm.get('password')!.hasError('required') && signUpForm.get('password')!.touched">
+                            {{ 'PASSWORD_REQUIRED' | translate }}
                         </div>
-                        <div class="error text-danger" *ngIf="authForm.get('password')!.hasError('minlength') && authForm.get('password')!.touched">
-                            Password must be at least 8 characters long.
+                        <div class="error text-danger" *ngIf="signUpForm.get('password')!.hasError('minlength') && signUpForm.get('password')!.touched">
+                            {{ 'PASSWORD_MIN_LENGTH' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="signUpForm.get('password')!.hasError('pattern') && signUpForm.get('password')!.touched">
+                            {{ 'PASSWORD_PATTERN' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="signUpForm.get('password')!.hasError('serverError')">
+                            {{ signUpForm.get('password')!.getError('serverError') }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label d-block fw-medium">
+                            {{ 'CONFIRM_PASSWORD' | translate }}
+                        </label>
+                        <mat-form-field>
+                            <i-feather name="lock"></i-feather>
+                            <mat-label>{{ 'ENTER_CONFIRM_PASSWORD' | translate }}</mat-label>
+                            <input matInput [type]="hide ? 'confirmPassword' : 'text'" id="confirmPassword" formControlName="confirmPassword">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <span class="material-symbols-outlined">
+                                    {{hide ? 'visibility_off' : 'visibility'}}
+                                </span>
+                            </button>
+                        </mat-form-field>
+                        <div class="error text-danger" *ngIf="signUpForm.get('confirmPassword')!.hasError('required') && signUpForm.get('confirmPassword')!.touched">
+                            {{ 'PASSWORD_REQUIRED' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="signUpForm.get('confirmPassword')!.hasError('minlength') && signUpForm.get('confirmPassword')!.touched">
+                            {{ 'PASSWORD_MIN_LENGTH' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="signUpForm.get('confirmPassword')!.hasError('pattern') && signUpForm.get('confirmPassword')!.touched">
+                            {{ 'PASSWORD_PATTERN' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="signUpForm.get('confirmPassword')!.hasError('serverError')">
+                            {{ signUpForm.get('confirmPassword')!.getError('serverError') }}
                         </div>
                     </div>
                     <div class="info">
                         <mat-checkbox color="primary">
-                            I accept the <a href="javascript:void(0);" class="text-primary">Terms & conditions</a>
+                            {{ 'I_ACCEPT_THE' | translate }} <a href="javascript:void(0);" class="text-primary">{{ 'TERMS_AND_CONDITIONS' | translate }}</a>
                         </mat-checkbox>
                     </div>
-                    <button mat-button type="submit" [disabled]="authForm.invalid">
-                        Sign Up
+                    <button mat-button type="submit" [disabled]="signUpForm.invalid">
+                        {{ 'SIGN_UP_BUTTON' | translate }}
                     </button>
                 </form>
             </div>
