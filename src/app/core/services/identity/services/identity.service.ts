@@ -31,7 +31,7 @@ export class IdentityService {
     const headers = new HttpHeaders()
       .set('Accept', 'text/plain')
       .set('Content-Type', 'application/json');
-    return this.httpService.httpPost<any>(`${this.apiUrl}Profile/SignUp`, request, headers);
+    return this.httpService.httpPost<any>(`${this.apiUrl}Account/SignUp`, request, headers);
   }
 
   confirmTwoFactorSignIn(email: string, password: string, code: string, type: number = 0): Observable<any> {

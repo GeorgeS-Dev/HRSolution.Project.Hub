@@ -8,6 +8,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgIf } from '@angular/common';
 import { FeathericonsModule } from '../../../icons/feathericons/feathericons.module';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { LoadingService } from '../../../core/services/loading.service';
+import { IdentityService } from '../../../core/services/identity/services/identity.service';
+import { ApiError } from '../../../core/services/api-response';
+import { ErrorHandlerService } from '../../../core/services/http/error-handler.service';
 
 @Component({
     selector: 'app-sign-up',
@@ -27,12 +31,18 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent {
+    hide: boolean = true;
+    hideConfirmation: boolean = true;
     signUpForm: FormGroup;
+    errorMessage: string | null = null;
 
     constructor(
         private fb: FormBuilder,
         private router: Router,
         private translate: TranslateService,
+        private loadingService: LoadingService,
+        private identityService: IdentityService,
+        private errorHandlerService: ErrorHandlerService
     ) {
         this.signUpForm = this.createAuthForm();
     }
@@ -67,14 +77,26 @@ export class SignUpComponent {
         });
     }
 
-    hide = true;
-
     onSubmit() {
-        if (this.signUpForm.valid) {
-            this.router.navigate(['/']);
-        } else {
-            console.log('Form is invalid. Please check the fields.');
-        }
+            if (this.signUpForm.valid) {
+                this.loadingService.show();
+                const formData = this.signUpForm.value;
+                this.errorMessage = "";
+                this.identityService.signUp(formData).subscribe({
+                    next: () => {
+                        // REDIRECT TO SUCCESS PAGE & show Confirm Email text
+                    },
+                    error: (error: ApiError) => {
+                        this.loadingService.hide();
+                        this.signUpForm.reset();
+                        this.handleError(error);
+                    }
+                });
+            }
+    }
+
+    private handleError(error: ApiError) {
+        this.errorHandlerService.handleError(error, this.signUpForm);
     }
 
 }
