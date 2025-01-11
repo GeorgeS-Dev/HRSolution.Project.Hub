@@ -20,5 +20,11 @@
   "LOGIN_FAILED": "Login failed: {{message}}",
   "UNKNOWN_ERROR": "An unknown error occurred.",
   "LOGIN_SUCCEEDED": "Login succeeded",
-  "PASSWORDCHANGE_SUCCEEDED": "Password change succeeded"
+  "PASSWORDCHANGE_SUCCEEDED": "Password change succeeded",
+  "SIGN_IN_WITH_GOOGLE": "Sign In with Google",
+  "Or_Text": "Or",
+  "SIGN_UP_HERE": "Sign Up Here",
+  "DONT_HAVE_ACCOUNT" : "Don't have an account yet?",
+  "REMEMBER_ME" : "Remember me",
+  "FORGOT_YOUR_PASSWORD": "Forgot your password?"
 }
