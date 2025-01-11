@@ -1,0 +1,23 @@
+<div *ngIf="!hasDisabled">
+    <h1 mat-dialog-title class="dialog-title">
+        Are you sure you want to disable two factor authentication?
+      </h1>
+      <div mat-dialog-actions class="dialog-actions text-center">
+        <button mat-flat-button color="warn" mat-dialog-close>
+          Cancel
+        </button>
+        <button mat-flat-button color="primary" class="text-bg-success" (click)="DisableTwoFactor();">
+          Confirm
+        </button>
+      </div>
+</div>
+<div *ngIf="hasDisabled">
+    <h1 mat-dialog-title>
+        Two factor authentication has successfully been disabled.
+    </h1>
+    <div mat-dialog-actions>
+        <button mat-flat-button color="primary" mat-dialog-close>
+            Confirm
+        </button>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div
+    [ngClass]="{'blank-page': router.url.includes('/auth')}"
+    [class.dark-theme]="toggleService.isDark()"
+>
+
+    <app-sidebar />
+
+    <div
+        class="main-content transition d-flex flex-column"
+        [ngClass]="{'active': isToggled}"
+    >
+        <app-header *ngIf="showHeader" />
+        <router-outlet />
+        <div class="flex-grow-1"></div>
+        <app-footer />
+    </div>
+
+    <div *ngIf="loading" class="global-spinner-overlay">
+        <mat-spinner></mat-spinner>
+    </div>
+
+</div>

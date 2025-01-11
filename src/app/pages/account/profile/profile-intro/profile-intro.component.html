@@ -1,0 +1,34 @@
+<mat-card
+    class="trinta-card profile-intro-card mb-25 bg-white border-none d-block"
+>
+    <mat-card-header>
+        <mat-card-title>
+            <h5 class="mt-0 mb-0">
+                Profile Intro
+            </h5>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="user text-center">
+            <img src="images/admin.jpg" class="rounded-circle" alt="user-image">
+            <h5>
+                {{ userClaims?.unique_name }}
+            </h5>
+            <span class="d-block text-body"  
+            [matTooltip]="userClaims?.UserID"
+            matTooltipPosition="below">
+                {{ userClaims?.role }}
+            </span>
+        </div>
+        <div 
+        class="buttons-list d-flex align-items-center justify-content-center" 
+        fxLayoutAlign="center center">
+        <a (click)="openDisableTwoFactorDialog()" class="default-btn text-bg-danger" mat-button *ngIf="userClaims?.TwoFactorEnabled === 'true'">
+            Deactivate 2FA
+        </a>
+        <a (click)="openTwoFactorDialog()" class="default-btn text-bg-success" mat-button *ngIf="userClaims?.TwoFactorEnabled === 'false'">
+            Activate 2FA
+        </a>
+        </div>
+    </mat-card-content>
+</mat-card>

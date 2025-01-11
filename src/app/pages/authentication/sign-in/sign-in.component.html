@@ -1,0 +1,97 @@
+<div class="sign-in-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div
+                class="trinta-form ml-auto mr-auto bg-white border-radius"
+            >
+                <div class="title text-center">
+                    <h3>
+                        {{ 'SIGN_IN' | translate }}
+                    </h3>
+                </div>
+                <div *ngIf="errorMessage" class="alert alert-danger">
+                    {{ errorMessage }}
+                </div>
+                <div *ngIf="loading" class="loader">
+                    <mat-spinner></mat-spinner>
+                </div>
+                <form [formGroup]="authForm" (ngSubmit)="onSubmit()" *ngIf="!showTwoFactor && !loading">
+                    <div class="form-group">
+                        <label class="label d-block fw-medium mb-10">
+                            {{ 'EMAIL_ADDRESS' | translate }}
+                        </label>
+                        <mat-form-field>
+                            <i-feather name="mail"></i-feather>
+                            <mat-label>{{ 'ENTER_EMAIL' | translate }}</mat-label>
+                            <input matInput type="email" id="email" formControlName="email">
+                        </mat-form-field>
+                        <div class="error text-danger" *ngIf="authForm.get('email')!.hasError('required') && authForm.get('email')!.touched">
+                            {{ 'EMAIL_REQUIRED' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="authForm.get('email')!.hasError('email') && authForm.get('email')!.touched">
+                            {{ 'INVALID_EMAIL' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="authForm.get('email')!.hasError('serverError')">
+                            {{ authForm.get('email')!.getError('serverError') }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="label d-block fw-medium mb-10">
+                            {{ 'PASSWORD' | translate }}
+                        </label>
+                        <mat-form-field>
+                            <i-feather name="lock"></i-feather>
+                            <mat-label>{{ 'ENTER_PASSWORD' | translate }}</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" id="password" formControlName="password">
+                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <span class="material-symbols-outlined">
+                                    {{hide ? 'visibility_off' : 'visibility'}}
+                                </span>
+                            </button>
+                        </mat-form-field>
+                        <div class="error text-danger" *ngIf="authForm.get('password')!.hasError('required') && authForm.get('password')!.touched">
+                            {{ 'PASSWORD_REQUIRED' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="authForm.get('password')!.hasError('minlength') && authForm.get('password')!.touched">
+                            {{ 'PASSWORD_MIN_LENGTH' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="authForm.get('password')!.hasError('pattern') && authForm.get('password')!.touched">
+                            {{ 'PASSWORD_PATTERN' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="authForm.get('password')!.hasError('serverError')">
+                            {{ authForm.get('password')!.getError('serverError') }}
+                        </div>
+                    </div>
+                    <!-- Submit Button -->
+                    <button mat-button type="submit" [disabled]="authForm.invalid">
+                        {{ 'SIGN_IN_BUTTON' | translate }}
+                    </button>
+                </form>
+                <form [formGroup]="twoFactorForm" (ngSubmit)="onSubmitTwoFactor()" *ngIf="showTwoFactor && !loading">
+                    <div class="form-group">
+                        <label class="label d-block fw-medium mb-10">
+                            {{ 'TWO_FACTOR_CODE' | translate }}
+                        </label>
+                        <mat-form-field>
+                            <mat-label>{{ 'ENTER_TWO_FACTOR_CODE' | translate }}</mat-label>
+                            <input matInput type="number" formControlName="twoFactorCode" minlength="6" maxlength="6">
+                        </mat-form-field>
+                        <div class="error text-danger" *ngIf="twoFactorForm.get('twoFactorCode')!.hasError('required') && twoFactorForm.get('twoFactorCode')!.touched">
+                            {{ 'TWO_FACTOR_CODE_REQUIRED' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="twoFactorForm.get('twoFactorCode')!.hasError('minlength') && twoFactorForm.get('twoFactorCode')!.touched">
+                            {{ 'TWO_FACTOR_CODE_MIN_LENGTH' | translate }}
+                        </div>
+                        <div class="error text-danger" *ngIf="twoFactorForm.get('twoFactorCode')!.hasError('maxlength') && twoFactorForm.get('twoFactorCode')!.touched">
+                            {{ 'TWO_FACTOR_CODE_MAX_LENGTH' | translate }}
+                        </div>
+                    </div>
+                    <!-- Submit Button -->
+                    <button mat-button type="submit" [disabled]="twoFactorForm.invalid">
+                        {{ 'VERIFY_CODE_BUTTON' | translate }}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

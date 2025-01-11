@@ -1,0 +1,158 @@
+.mat-mdc-card {
+    &.trinta-card {
+        &.profile-intro-card {
+            .mat-mdc-card-content {
+                .user {
+                    img {
+                        width: 153px;
+                        height: 153px;
+                    }
+                    h5 {
+                        font-size: 16px;
+                        margin-top: 20px;
+                        margin-bottom: 11px;
+                    }
+                }
+                .buttons-list {
+                    margin-top: 25px;
+
+                    .default-btn {
+                        &.mat-mdc-button {
+                            height: auto;
+                            min-width: auto;
+                            border-radius: 6px;
+                            padding: 10px 15px 11px;
+                            color: var(--primaryColor);
+                            background: rgba(55, 97, 238, 0.10);
+                            font-size: 14px;
+                            font-weight: 600;
+                            font-family: var(--headingFontFamily);
+                            &:nth-child(2) {
+                                color: var(--whiteColor);
+                                background-color: var(--primaryColor);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .mat-form-field {
+        display: block;
+        .mat-mdc-form-field-focus-overlay {
+            display: none;
+        }
+        .mat-mdc-text-field-wrapper {
+            border: 1px solid #ccc; /* Add border */
+            border-radius: 4px; /* Add border radius */
+            padding: 0 10px; /* Add padding */
+        }
+        .mat-mdc-form-field-flex {
+            padding: 10px 0; /* Add padding */
+        }
+    }
+    .mdc-text-field--filled {
+        &:not(.mdc-text-field--disabled) {
+            background-color: #f5f7fa;
+        }
+    }
+    .mdc-text-field--focused {
+        &:not(.mdc-text-field--disabled) {
+            .mdc-floating-label {
+                color: var(--primaryColor) !important;
+            }
+        }
+    }
+    .mat-mdc-icon-button {
+        &.mat-mdc-button-base {
+            padding: 12px 0 12px 0;
+            margin-right: -15px;
+        }
+    }
+    .mdc-line-ripple {
+        display: none;
+    }
+    .mdc-text-field {
+        &:not(.mdc-text-field--disabled) {
+            .mdc-floating-label {
+                color: #a9a9c8;
+            }
+        }
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width : 767px) {
+
+    .mat-mdc-card {
+        &.trinta-card {
+            &.profile-intro-card {
+                .mat-mdc-card-content {
+                    .user {
+                        img {
+                            width: 130px;
+                            height: 130px;
+                        }
+                        h5 {
+                            font-size: 15px;
+                            margin-top: 10px;
+                            margin-bottom: 8px;
+                        }
+                    }
+                    .buttons-list {
+                        margin-top: 20px;
+
+                        .default-btn {
+                            &.mat-mdc-button {
+                                font-size: 13px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+/* Min width 576px to Max width 767px */
+@media only screen and (min-width : 576px) and (max-width : 767px) {}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+
+    .mat-mdc-card {
+        &.trinta-card {
+            &.profile-intro-card {
+                .mat-mdc-card-content {
+                    .user {
+                        img {
+                            width: 145px;
+                            height: 145px;
+                        }
+                        h5 {
+                            margin-top: 15px;
+                            margin-bottom: 9px;
+                        }
+                    }
+                    .buttons-list {
+                        margin-top: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px) {}
+
+/* Min width 1200px to Max width 1399px */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}
