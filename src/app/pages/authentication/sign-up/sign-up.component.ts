@@ -39,7 +39,6 @@ export class SignUpComponent {
     constructor(
         private fb: FormBuilder,
         private router: Router,
-        private translate: TranslateService,
         private loadingService: LoadingService,
         private identityService: IdentityService,
         private errorHandlerService: ErrorHandlerService
@@ -84,7 +83,7 @@ export class SignUpComponent {
                 this.errorMessage = "";
                 this.identityService.signUp(formData).subscribe({
                     next: () => {
-                        // REDIRECT TO SUCCESS PAGE & show Confirm Email text
+                        this.router.navigate(['/auth/confirm-email']);
                     },
                     error: (error: ApiError) => {
                         this.loadingService.hide();
