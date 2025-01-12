@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SignInResponse } from '../identity/models/sign-in.response.model';
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,8 @@ export class HttpService {
 
   constructor(
     private http: HttpClient,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private translate: TranslateService
   ) {}
 
   httpPost<T>(url: string, body: any, headers: HttpHeaders): Observable<T> {
@@ -60,7 +62,7 @@ export class HttpService {
   }
 
   private handleError(error: any): Observable<never> {
-    const apiError = parseAPIResponseError(error.error, this.snackBar);
+    const apiError = parseAPIResponseError(error.error, this.snackBar, this.translate);
     return throwError(() => apiError);
   }
   

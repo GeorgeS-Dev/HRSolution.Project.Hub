@@ -1,6 +1,7 @@
+import { TranslateService } from '@ngx-translate/core';
 import { ApiResponse, ApiError } from '../services/api-response.js';
-import { IdentityExceptionMessages } from '../services/identity/enums/identityExceptionCodeTypes.js';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable, of } from 'rxjs';
 
 export function parseAPIResponse<T>(response: ApiResponse<T>): T {
   if (response.succeeded) {
@@ -13,14 +14,76 @@ export function parseAPIResponse<T>(response: ApiResponse<T>): T {
   throw new Error('An unknown error occurred.');
 }
 
-export function parseAPIResponseError(response: ApiResponse<null>, snackBar: MatSnackBar): ApiError {
+export function parseAPIResponseError(response: ApiResponse<null>, snackBar: MatSnackBar, translate: TranslateService): Observable<ApiError> {
   const apiError: ApiError = {
     message: null,
     validation: null,
   };
 
-  if (response?.errorCode) {
-    if (response.errorCode === 1800 && response.message) {
+  return new Observable<ApiError>((observer) => {
+    if (response?.errorCode) {
+      if (response.errorCode === 1800 && response.message) {
+        try {
+          const validationErrors = JSON.parse(response.message);
+          if (Array.isArray(validationErrors)) {
+            apiError.validation = validationErrors.reduce((acc: any, error: any) => {
+              acc[error.PropertyName] = error.ErrorMessage;
+              return acc;
+            }, {});
+            translate.get('ERRORS.VALIDATION').subscribe((translation) => {
+              apiError.message = translation;
+              observer.next(apiError);
+              observer.complete();
+            });
+            return;
+          }
+        } catch (e) {
+          translate.get('ERRORS.INVALID').subscribe((translation) => {
+            apiError.message = translation;
+            snackBar.open(apiError.message || '', 'Close', {
+              duration: 5000,
+              panelClass: ['snackbar-error'],
+              horizontalPosition: 'left',
+              verticalPosition: 'top',
+            });
+            observer.next(apiError);
+            observer.complete();
+          });
+          return;
+        }
+      } else {
+        const fallbackMessage = 'Unknown error';
+        translate.get("ERRORS." + response.errorCode.toString()).subscribe({
+          next: (translation) => {
+            apiError.message = translation || fallbackMessage;
+            snackBar.open(apiError.message || '', 'Close', {
+              duration: 5000,
+              panelClass: ['snackbar-error'],
+              horizontalPosition: 'left',
+              verticalPosition: 'top',
+            });
+            observer.next(apiError);
+            observer.complete();
+          },
+          error: () => {
+            translate.get('ERRORS.UNKNOWN').subscribe((translation) => {
+              apiError.message = translation;
+              snackBar.open(apiError.message || '', 'Close', {
+                duration: 5000,
+                panelClass: ['snackbar-error'],
+                horizontalPosition: 'left',
+                verticalPosition: 'top',
+              });
+              observer.next(apiError);
+              observer.complete();
+            });
+          }
+        });
+        return;
+      }
+    }
+
+    if (response?.message) {
       try {
         const validationErrors = JSON.parse(response.message);
         if (Array.isArray(validationErrors)) {
@@ -28,59 +91,25 @@ export function parseAPIResponseError(response: ApiResponse<null>, snackBar: Mat
             acc[error.PropertyName] = error.ErrorMessage;
             return acc;
           }, {});
-          apiError.message = 'Validation error';
-          return apiError;
+          observer.next(apiError);
+          observer.complete();
+          return;
         }
       } catch (e) {
-        apiError.message = 'Invalid validation error format';
+        apiError.message = response.message;
         snackBar.open(apiError.message, 'Close', {
           duration: 5000,
           panelClass: ['snackbar-error'],
           horizontalPosition: 'left',
           verticalPosition: 'top',
         });
-        return apiError;
+        observer.next(apiError);
+        observer.complete();
+        return;
       }
-    } else {
-      apiError.message = IdentityExceptionMessages[response.errorCode] || 'Unknown error';
-      snackBar.open(apiError.message, 'Close', {
-        duration: 5000,
-        panelClass: ['snackbar-error'],
-        horizontalPosition: 'left',
-        verticalPosition: 'top',
-      });
-      return apiError;
     }
-  }
 
-  if (response?.message) {
-    try {
-      const validationErrors = JSON.parse(response.message);
-      if (Array.isArray(validationErrors)) {
-        apiError.validation = validationErrors.reduce((acc: any, error: any) => {
-          acc[error.PropertyName] = error.ErrorMessage;
-          return acc;
-        }, {});
-        return apiError;
-      }
-    } catch (e) {
-      apiError.message = response.message;
-      snackBar.open(apiError.message, 'Close', {
-        duration: 5000,
-        panelClass: ['snackbar-error'],
-        horizontalPosition: 'left',
-        verticalPosition: 'top',
-      });
-      return apiError;
-    }
-  }
-
-  apiError.message = 'An unknown error occurred.';
-  snackBar.open(apiError.message, 'Close', {
-    duration: 5000,
-    panelClass: ['snackbar-error'],
-    horizontalPosition: 'left',
-    verticalPosition: 'top',
+    observer.next(apiError);
+    observer.complete();
   });
-  return apiError;
 }

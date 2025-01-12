@@ -41,5 +41,24 @@
   "ENTER_CONFIRM_PASSWORD": "Confirm your password",
   "I_ACCEPT_THE": "I accept the",
   "TERMS_AND_CONDITIONS": "Terms and Conditions",
-  "SIGN_UP_BUTTON": "Sign Up"
+  "SIGN_UP_BUTTON": "Sign Up",
+  "ERRORS": {
+    "INVALID": "Invalid Error.",
+    "VALIDATION": "Validation Error.",
+    "UNKNOWN": "Unknown Error.",
+    "1400": "The requested resource was not found.",
+    "1500": "An unhandled error occurred.",
+    "1501": "The resource already exists.",
+    "1701": "User verification is required.",
+    "1702": "The user is locked out.",
+    "1703": "The provided credentials are invalid.",
+    "1704": "The provided token is invalid.",
+    "1705": "The feature is already enabled.",
+    "1706": "The feature is already disabled.",
+    "1800": "Validation error occurred.",
+    "1900": "The company was not found.",
+    "1901": "All company seats are taken.",
+    "1902": "The company is disabled.",
+    "1903": "Current Password Is Invalid."
+  }
 }
