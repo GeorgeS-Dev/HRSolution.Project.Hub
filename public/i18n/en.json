@@ -42,6 +42,10 @@
   "I_ACCEPT_THE": "I accept the",
   "TERMS_AND_CONDITIONS": "Terms and Conditions",
   "SIGN_UP_BUTTON": "Sign Up",
+  "BACK_TO_HOME": "Back to Home",
+  "SUCCESS": "Success !",
+  "WELCOME": "Welcome",
+  "EMAIL_CONFIRMATION": "A email has been send to {{ email }}. Please check for an email from company and click on the included link to reset your password.",
   "ERRORS": {
     "INVALID": "Invalid Error.",
     "VALIDATION": "Validation Error.",

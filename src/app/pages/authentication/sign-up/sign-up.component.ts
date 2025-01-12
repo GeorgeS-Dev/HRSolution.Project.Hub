@@ -83,7 +83,7 @@ export class SignUpComponent {
                 this.errorMessage = "";
                 this.identityService.signUp(formData).subscribe({
                     next: () => {
-                        this.router.navigate(['/auth/confirm-email']);
+                        this.router.navigate(['/auth/confirm-email'], { queryParams: { email: formData.email } });
                     },
                     error: (error: ApiError) => {
                         this.loadingService.hide();
