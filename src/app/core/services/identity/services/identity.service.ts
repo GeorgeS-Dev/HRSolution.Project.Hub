@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { environment } from '../../../../../environments/environment';
 import { HttpService } from '../../http/http.service';
 import { SignUpRequest } from '../models/sign-up.request.model';
+import { ConfirmEmailRequest } from '../models/confirm-email.request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,13 @@ export class IdentityService {
       .set('Accept', 'text/plain')
       .set('Content-Type', 'application/json');
     return this.httpService.httpPost<any>(`${this.apiUrl}Account/SignUp`, request, headers);
+  }
+
+  confirmEmail(request: ConfirmEmailRequest): Observable<any> { 
+    const headers = new HttpHeaders()
+      .set('Accept', 'text/plain')
+      .set('Content-Type', 'application/json');
+    return this.httpService.httpPost<any>(`${this.apiUrl}Account/ConfirmEmail`, request, headers);
   }
 
   confirmTwoFactorSignIn(email: string, password: string, code: string, type: number = 0): Observable<any> {

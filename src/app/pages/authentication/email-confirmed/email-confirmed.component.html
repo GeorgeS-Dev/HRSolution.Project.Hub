@@ -1,0 +1,37 @@
+<div class="confirm-email-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div
+                class="trinta-form text-center ml-auto mr-auto bg-white border-radius"
+            >
+                <div class="icon text-primary ml-auto mr-auto d-flex align-items-center justify-content-center rounded-circle">
+                    @if (succeeded) {
+                        <i-feather name="check"></i-feather>
+                    }
+                    @else {
+                        <i-feather name="x"></i-feather>
+                    }
+                </div>
+                <h4>
+                    @if (succeeded) {
+                        {{ 'SUCCESS' | translate }}
+                    }
+                    @else {
+                        {{ 'FAILURE' | translate }}
+                    }
+                </h4>
+                <p class="text-black">
+                    @if (succeeded) {
+                        {{ 'EMAIL_CONFIRMED' | translate }}
+                    }
+                    @else {
+                        {{ 'EMAIL_CONFIRMATION_ERROR' | translate }}
+                    }
+                </p>
+                <a routerLink="/auth/sign-in" mat-button>
+                    {{ 'BACK_TO_HOME' | translate }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
