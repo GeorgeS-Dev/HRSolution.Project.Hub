@@ -7,6 +7,8 @@ import { environment } from '../../../../../environments/environment';
 import { HttpService } from '../../http/http.service';
 import { SignUpRequest } from '../models/sign-up.request.model';
 import { ConfirmEmailRequest } from '../models/confirm-email.request.model';
+import { forgotPasswordSendRequest } from '../models/forgot-password-send.request.model';
+import { forgotPasswordConfirmRequest } from '../models/forgot-password-confirm.request.model';
 
 @Injectable({
   providedIn: 'root',
@@ -40,6 +42,20 @@ export class IdentityService {
       .set('Accept', 'text/plain')
       .set('Content-Type', 'application/json');
     return this.httpService.httpPost<any>(`${this.apiUrl}Account/ConfirmEmail`, request, headers);
+  }
+
+  forgotPasswordSend(request: forgotPasswordSendRequest): Observable<any> { 
+    const headers = new HttpHeaders()
+      .set('Accept', 'text/plain')
+      .set('Content-Type', 'application/json');
+    return this.httpService.httpPost<any>(`${this.apiUrl}Account/ForgetPasswordSend`, request, headers);
+  }
+
+  forgotPasswordConfirm(request: forgotPasswordConfirmRequest): Observable<any> { 
+    const headers = new HttpHeaders()
+      .set('Accept', 'text/plain')
+      .set('Content-Type', 'application/json');
+    return this.httpService.httpPost<any>(`${this.apiUrl}Account/ForgotPasswordConfirm`, request, headers);
   }
 
   confirmTwoFactorSignIn(email: string, password: string, code: string, type: number = 0): Observable<any> {

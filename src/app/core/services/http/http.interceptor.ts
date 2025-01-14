@@ -20,7 +20,6 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor(private httpService: HttpService, private router: Router) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("test");
     // Needs fixing
     // const now = new Date();
     // const refreshTokenExpiry = new Date(localStorage.getItem(this.REFRESH_TOKEN_EXPIRES_KEY) || '');

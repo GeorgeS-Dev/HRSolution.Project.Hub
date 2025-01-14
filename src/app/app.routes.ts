@@ -9,6 +9,8 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { ProfileComponent } from './pages/account/profile/profile.component';
 import { SignUpComponent } from './pages/authentication/sign-up/sign-up.component';
 import { EmailConfirmedComponent } from './pages/authentication/email-confirmed/email-confirmed.component';
+import { ForgotPasswordComponent } from './pages/authentication/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './pages/authentication/reset-password/reset-password.component';
 
 export const routes: Routes = [
     { path: '', canActivate: [AuthGuard], children: [
@@ -25,7 +27,9 @@ export const routes: Routes = [
             {path: 'sign-in', component: SignInComponent},
             {path: 'sign-up', component: SignUpComponent},
             {path: 'confirm-email', component: ConfirmEmailComponent},
-            {path: 'email-confirmed', component: EmailConfirmedComponent}
+            {path: 'email-confirmed', component: EmailConfirmedComponent},
+            {path: 'forgot-password', component: ForgotPasswordComponent},
+            {path: 'reset-password', component: ResetPasswordComponent}
         ]
     },
 

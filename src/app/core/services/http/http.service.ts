@@ -62,7 +62,7 @@ export class HttpService {
   }
 
   private handleError(error: any): Observable<never> {
-    const apiError = parseAPIResponseError(error.error, this.snackBar, this.translate);
+    const apiError = parseAPIResponseError(error.error, this.snackBar, this.translate).subscribe();
     return throwError(() => apiError);
   }
   

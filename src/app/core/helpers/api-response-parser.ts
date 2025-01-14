@@ -19,6 +19,7 @@ export function parseAPIResponseError(response: ApiResponse<null>, snackBar: Mat
     message: null,
     validation: null,
   };
+  console.log(response);
 
   return new Observable<ApiError>((observer) => {
     if (response?.errorCode) {
