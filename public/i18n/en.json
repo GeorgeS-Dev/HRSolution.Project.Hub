@@ -49,6 +49,10 @@
   "EMAIL_CONFIRMATION_ERROR": "Email Confirmation Failed, Please Try Again.",
   "EMAIL_CONFIRMATION": "An email has been sent to {{ email }}. Please check for an email from LegionStaff and follow the instructions to confirm your email!",
   "EMAIL_CONFIRMED": "Your Email has been confirmed successfully! You can now sign in to your account.",
+  "RESET_PASSWORD": "Reset Password",
+  "ENTER_PASSWORD_BELOW": "Enter Your Password Below.",
+  "SET_NEW_PASSWORD": "Set New Password",
+  "RESET_PASSWORD_SUCCEEDED": "Password reset succeeded",
   "ERRORS": {
     "INVALID": "Invalid Error.",
     "VALIDATION": "Validation Error.",
