@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FeathericonsModule } from '../../../icons/feathericons/feathericons.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { LoadingService } from '../../../core/services/loading.service';
 
 @Component({
     selector: 'app-confirm-email',
@@ -14,7 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class ConfirmEmailComponent {
     email: string | null = null;
 
-    constructor(private route: ActivatedRoute, private router: Router) {}
+    constructor(private route: ActivatedRoute, private router: Router, private loadingService: LoadingService) {}
   
     ngOnInit(): void {
       // Retrieve the email from the query parameters
@@ -25,6 +26,7 @@ export class ConfirmEmailComponent {
           // Redirect to sign-in page if email is null or empty
           this.router.navigate(['/auth/sign-in']);
         }
+        this.loadingService.hide();
       });
     }
 }
