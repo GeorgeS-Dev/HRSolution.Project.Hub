@@ -5,4 +5,5 @@ export class jwtTokenClaims {
     LastName: string = '';
     TwoFactorEnabled: string = 'false';
     role: string = '';
+    companyId: string | null = null;
   }

@@ -10,4 +10,5 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
+    
 }

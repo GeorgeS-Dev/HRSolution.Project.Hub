@@ -11,14 +11,23 @@ import { SignUpComponent } from './pages/authentication/sign-up/sign-up.componen
 import { EmailConfirmedComponent } from './pages/authentication/email-confirmed/email-confirmed.component';
 import { ForgotPasswordComponent } from './pages/authentication/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './pages/authentication/reset-password/reset-password.component';
+import { HomeComponent } from './pages/organization/home/home.component';
+import { CreateCompanyComponent } from './pages/organization/company/create/create-company.component';
 
 export const routes: Routes = [
     { path: '', canActivate: [AuthGuard], children: [
-        // {path: '', component: EcommerceComponent},
+        {path: '', component: HomeComponent},
         {path: 'blank-page', component: BlankPageComponent},
         {path: 'internal-error', component: InternalErrorComponent},
         {path: 'profile', component: ProfileComponent},
     ]},
+    {
+        path: 'organization',
+        canActivate: [AuthGuard],
+        children: [
+            {path: 'create' , component: CreateCompanyComponent},
+        ] 
+    },
     {
         path: 'auth',
         component: AuthenticationComponent,
