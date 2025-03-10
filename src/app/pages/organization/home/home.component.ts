@@ -8,8 +8,8 @@ import { RouterLink } from '@angular/router';
   selector: 'app-home',
   standalone: true,
   imports: [
-    NgIf,
-    RouterLink
+    // NgIf,
+    // RouterLink
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
