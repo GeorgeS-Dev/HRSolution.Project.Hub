@@ -1,10 +1,12 @@
-<div class="home">
-    <!-- <h1>{{ title }}</h1> -->
-    <p>Welcome to the Home Page!</p>
-    <!-- <p class *ngIf="!companyExists">
-      You have not registered a company yet!
-      Please do so following the link below.
-      <br/>
-      <a routerLink="/organization/create">Register Company</a>
-    </p> -->
+<div class="container">
+  <h1>{{ title }}</h1>
+  
+  <div *ngIf="companyExists">
+    <p>Welcome to your company dashboard!</p>
   </div>
+  
+  <div *ngIf="!companyExists">
+    <p>You don't have a company yet. Consider creating one!</p>
+    <a routerLink="/organization/create">Create Company</a>
+  </div>
+</div>

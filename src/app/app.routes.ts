@@ -32,6 +32,7 @@ export const routes: Routes = [
         path: 'auth',
         component: AuthenticationComponent,
         children: [
+            {path: '', component: SignInComponent, },
             {path: 'sign-in', component: SignInComponent},
             {path: 'sign-up', component: SignUpComponent},
             {path: 'confirm-email', component: ConfirmEmailComponent},
