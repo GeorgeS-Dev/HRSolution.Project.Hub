@@ -23,10 +23,9 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     { 
-        path: '/',
-        pathMatch: 'full', // Add this to ensure exact path matching
-        component: HomeComponent,
-        canActivate: [AuthGuard]
+        path: 'qwerty-page',
+        canActivate: [AuthGuard],
+        component: HomeComponent
     },
     { 
         path: '',
