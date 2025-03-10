@@ -1,40 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { NgIf } from '@angular/common';
+import { Component } from '@angular/core';
+// import { jwtTokenClaims } from '../../../core/services/identity/models/token-claims.model';
+// import { TokenService } from '../../../core/services/identity/services/token.service';
+// import { NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
+// import { TranslateModule } from '@ngx-translate/core';
+// import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    NgIf,
-    RouterLink
+    // NgIf,
+    RouterLink,
   ],
-  template: `
-    <div class="container">
-      <h1>Home Page</h1>
-      <p>Welcome to the application!</p>
-      <a routerLink="/organization/create">Create Company</a>
-    </div>
-  `,
-  styles: [`
-    .container {
-      padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    h1 {
-      color: #333;
-    }
-  `]
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
-  // Inline template and styles to avoid potential path resolution issues
-  
-  constructor() {
-    console.log('HomeComponent constructed');
-  }
-  
-  ngOnInit(): void {
-    console.log('HomeComponent initialized');
-  }
+export class HomeComponent {
+  // userClaims: jwtTokenClaims | null = null;
+  // companyExists: boolean = false;
+  // title = 'Home Page';
+
+  // constructor(private tokenService: TokenService) {
+  //   // Initialize variables with safe defaults
+  //   this.companyExists = false;
+    
+  //   try {
+  //     this.userClaims = this.tokenService.getDecodedToken();
+  //     this.companyExists = this.userClaims?.companyId ? true : false;
+  //   } catch (error) {
+  //     console.error('Error in HomeComponent initialization:', error);
+  //   }
+  // }
 }

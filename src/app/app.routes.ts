@@ -18,9 +18,14 @@ export const routes: Routes = [
     // Consolidate the root path to avoid conflicts
     { 
         path: '',
+        pathMatch: 'full', // Add this to ensure exact path matching
+        component: HomeComponent,
+        canActivate: [AuthGuard]
+    },
+    { 
+        path: '',
         canActivate: [AuthGuard],
         children: [
-            {path: '', component: HomeComponent}, // Default route
             {path: 'blank-page', component: BlankPageComponent},
             {path: 'internal-error', component: InternalErrorComponent},
             {path: 'profile', component: ProfileComponent},
