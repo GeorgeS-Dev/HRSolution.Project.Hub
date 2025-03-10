@@ -23,6 +23,12 @@ export const routes: Routes = [
         canActivate: [AuthGuard]
     },
     { 
+        path: '/',
+        pathMatch: 'full', // Add this to ensure exact path matching
+        component: HomeComponent,
+        canActivate: [AuthGuard]
+    },
+    { 
         path: '',
         canActivate: [AuthGuard],
         children: [
