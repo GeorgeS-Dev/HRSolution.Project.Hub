@@ -15,13 +15,13 @@ import { RouterLink } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-    userClaims: jwtTokenClaims | null = null;
-    companyExists: boolean = false;
-  title = 'Home Page';
+//     userClaims: jwtTokenClaims | null = null;
+//     companyExists: boolean = false;
+//   title = 'Home Page';
 
-  constructor(private tokenService: TokenService
-      ) {
-        this.userClaims = tokenService.getDecodedToken();
-        this.companyExists = this.userClaims === null || !this.userClaims.companyId ? false : true;
-  }
+//   constructor(private tokenService: TokenService
+//       ) {
+//         this.userClaims = tokenService.getDecodedToken();
+//         this.companyExists = this.userClaims === null || !this.userClaims.companyId ? false : true;
+//   }
 }
