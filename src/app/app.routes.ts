@@ -16,7 +16,7 @@ import { HomeComponent } from './pages/organization/home/home.component';
 
 export const routes: Routes = [
     { path: '', canActivate: [AuthGuard], children: [
-        {path: '', component: HomeComponent},
+        {path: 'asd', component: HomeComponent},
         {path: 'blank-page', component: BlankPageComponent},
         {path: 'internal-error', component: InternalErrorComponent},
         {path: 'profile', component: ProfileComponent},
