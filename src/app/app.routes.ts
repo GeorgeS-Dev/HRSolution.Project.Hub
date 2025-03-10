@@ -15,17 +15,17 @@ import { CreateCompanyComponent } from './pages/organization/company/create/crea
 import { HomeComponent } from './pages/organization/home/home.component';
 
 export const routes: Routes = [
+    // Consolidate the root path to avoid conflicts
     { 
-        path: '', 
-        canActivate: [AuthGuard], 
-        component: HomeComponent
-    },
-    { path: '', canActivate: [AuthGuard],
+        path: '',
+        canActivate: [AuthGuard],
         children: [
+            {path: '', component: HomeComponent}, // Default route
             {path: 'blank-page', component: BlankPageComponent},
             {path: 'internal-error', component: InternalErrorComponent},
             {path: 'profile', component: ProfileComponent},
-    ]},
+        ]
+    },
     {
         path: 'organization',
         canActivate: [AuthGuard],
@@ -37,7 +37,7 @@ export const routes: Routes = [
         path: 'auth',
         component: AuthenticationComponent,
         children: [
-            {path: '', component: SignInComponent, },
+            {path: '', component: SignInComponent},
             {path: 'sign-in', component: SignInComponent},
             {path: 'sign-up', component: SignUpComponent},
             {path: 'confirm-email', component: ConfirmEmailComponent},
