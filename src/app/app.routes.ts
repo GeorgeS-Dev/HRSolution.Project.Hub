@@ -15,9 +15,13 @@ import { CreateCompanyComponent } from './pages/organization/company/create/crea
 import { HomeComponent } from './pages/organization/home/home.component';
 
 export const routes: Routes = [
-    { path: '', canActivate: [AuthGuard], component: HomeComponent, 
+    { 
+        path: '', 
+        canActivate: [AuthGuard], 
+        component: HomeComponent
+    },
+    { path: '', canActivate: [AuthGuard],
         children: [
-            {path: '', component: HomeComponent},
             {path: 'blank-page', component: BlankPageComponent},
             {path: 'internal-error', component: InternalErrorComponent},
             {path: 'profile', component: ProfileComponent},
